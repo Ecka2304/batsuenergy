@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Batsú Energy Enterprise</title>
+ <!-- Customized Bootstrap Stylesheet -->
+    <link href="../../css/style.css" rel="stylesheet">
+  <!-- icon -->
+    <link href="../../Logos/icono.ico" rel="icon">
+
+<!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+<!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+ <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+</head>
+ <style>
+    * {
+      box-sizing: border-box;
+    }
+
+  .container {
+      display: flex;
+      width: 95%;
+      max-width: 1400px;
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .thumbnail-column {
+      width: 100px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-right: 20px;
+      max-height: 500px;
+    }
+
+    .thumbnail-column img {
+      width: 100%;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+
+    .thumbnail-column img.selected {
+      border-color: #007BFF;
+    }
+
+    .main-section {
+      display: flex;
+      flex-direction: row;
+      flex-grow: 1;
+      flex-wrap: wrap;
+    }
+
+    .main-image-container {
+      position: relative;
+      flex: 1 1 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 20px;
+      overflow: hidden;
+      min-width: 300px;
+    }
+
+    .main-image {
+      max-width: 100%;
+      max-height: 500px;
+      transition: transform 0.2s ease;
+    }
+
+    .zoom-lens {
+      position: absolute;
+      border: 1px solid #d4d4d4;
+      width: 150px;
+      height: 150px;
+      opacity: 0.4;
+      background-color: #fff;
+      display: none;
+    }
+
+    .zoom-result img {
+      position: absolute;
+      width: auto;
+      height: 1000px; /* 2x zoom */
+    }
+
+    .product-text {
+      flex: 1 1 300px;
+      max-width: 600px;
+    }
+
+    .product-text h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .product-text p {
+      margin-bottom: 10px;
+      line-height: 1.5;
+      text-align: justify;
+    }
+
+.rotate-icon {
+  transition: transform 0.3s ease;
+}
+
+.collapsed .rotate-icon {
+  transform: rotate(0deg);
+}
+
+.btn:not(.collapsed) .rotate-icon {
+  transform: rotate(180deg);
+}
+
+.accordion .card-header {
+  background-color: transparent;
+}
+
+.accordion .btn-link {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.accordion .btn-link:hover {
+  text-decoration: none;
+  color: #007bff;
+}
+
+</style>
+ 
+<body>
+      <!-- Encabezado -->
+   <div class="container-fluid position-relative nav-bar p-0">
+        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+            <nav class="navbar navbar-expand-lg custom-navbar shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+                <a href="" class="navbar-brand">
+                    <img src="../../Logos/Logo Inicio.png" alt="Logo de Batsú" height="100px">
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto py-0">
+                        <a href="../../Home/index.html" class="nav-item nav-link active">Inicio</a>
+                        <a href="../../producto.html" class="nav-item nav-link">Productos</a>
+                        <a href="../../aplicacion.html" class="nav-item nav-link">Aplicaciones</a>
+                        <a href="../../soporte.html" class="nav-item nav-link">Soporte</a>
+                        <a href="../../sobrenosotros.html" class="nav-item nav-link">Sobre Nosotros</a>
+                        <a href="../../contacto.html" class="nav-item nav-link">Contacto</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+  <div class="container">
+    <div class="thumbnail-column">
+      <img src="../img/Sist. de almacen. de energía All in One de 5 kWh y 8 kWh.jpg" alt="Thumbnail 1" class="thumbnail selected" onclick="selectImage(this)">
+      <img src="../img/Batería de 51,2 V y 300 Ah 3 pisos.jpg" alt="Thumbnail 2" class="thumbnail" onclick="selectImage(this)">
+      <img src="../img/Batería de 51,2 V y 100 Ah para montaje.jpg" alt="Thumbnail 3" class="thumbnail" onclick="selectImage(this)">
+      <img src="../img/Batería de 51,2 V y 300 Ah Detrás.jpg" alt="Thumbnail 4" class="thumbnail" onclick="selectImage(this)">
+      <img src="../img/Batería de 51,2 V y 300 Ah.jpg" alt="Thumbnail 5" class="thumbnail" onclick="selectImage(this)">
+    </div>
+
+    <div class="main-section">
+        <div class="main-image-container" id="mainImageContainer">
+        <img id="mainImage" src="../img/Sist. de almacen. de energía All in One de 5 kWh y 8 kWh.jpg" alt="Main Image" class="main-image">
+        <div class="zoom-lens" id="zoomLens"></div>
+        <div class="zoom-result" id="zoomResult">
+          <img id="zoomedImage" src="../img/Sist. de almacen. de energía All in One de 5 kWh y 8 kWh.jpg" alt="Zoomed Image">
+        </div>
+      </div>
+
+    <div class="product-text">
+        <h1>Sistema de almacenamiento de energía todo en uno</h1>
+        <p>Nuestra batería LiFePO₄ todo en uno de 25,6 V y 195 Ah y 51,2 V y 157 Ah integra almacenamiento de energía de alta capacidad con un diseño eficiente y compacto.</p>
+        <p>Con una larga vida útil, alta seguridad y un rendimiento estable, es ideal para sistemas de respaldo domésticos y aplicaciones industriales.</p>
+
+  <div class="accordion mt-4" id="accordionSpecs">
+  <div class="card border-0">
+    <div class="card-header p-0 bg-white border-bottom">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left d-flex justify-content-between align-items-center collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false">
+          Características y Especificaciones
+          <span class="fa fa-chevron-down ml-2 rotate-icon"></span>
+        </button>
+      </h2>
+    </div>
+    <div id="collapseOne" class="collapse" data-parent="#accordionSpecs">
+      <div class="card-body pt-2">
+        <p class="mb-2">Diseño integrado: Combina la batería, el controlador y otros componentes del sistema, lo que facilita la instalación y reduce el espacio requerido.</p>
+        <p class="mb-2">Gran capacidad: Proporciona 51,2 V y 157 Ah, ideal para la mayoría de las necesidades de almacenamiento de energía residenciales y comerciales, ofreciendo energía estable y duradera.</p>
+        <p class="mb-2">Gestión simplificada: Todos los componentes se encuentran en un solo sistema, lo que reduce la complejidad de instalación, mantenimiento y monitoreo.</p>
+        <p class="mb-2">Gran compatibilidad: Compatible con diversos inversores y sistemas de gestión de energía, satisfaciendo así diferentes necesidades energéticas.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card border-0">
+    <div class="card-header p-0 bg-white border-bottom">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left d-flex justify-content-between align-items-center collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false">
+          Especificaciones clave
+          <span class="fa fa-chevron-down ml-2 rotate-icon"></span>
+        </button>
+      </h2>
+    </div>
+    <div id="collapseTwo" class="collapse" data-parent="#accordionSpecs">
+      <div class="card-body pt-2">
+        <ul class="mb-0 pl-3">
+          <li>Energía: 5000/8000 Wh</li>
+          <li>Garantía: 5 años</li>
+          <li>Ciclos de vida: 6000</li>
+          <li>Eficiencia de carga: 99%</li>
+          <li>Salida de CA: 110 V</li>
+          <li>Entrada de CA: 110 V</li>
+          <li>Rango de temperatura de carga: 32°~ 131 ℉ [140 ℉ máx.]</li>
+          <li>Rango de temperatura de descarga: -4°~140℉[-20℃-60℃]</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
+        <div class="row pt-5">
+            <div class="col-lg-3 col-md-6 mb-5">
+                <a href="" class="navbar-brand">
+                    <h1 class="text-primary"><span class="text-white">BATSÚ</span></h1>
+                </a>
+                <p>Soluciones de Almacenamiento Energético</p>
+                <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Seguínos en nuestras redes sociales</h6>
+                 <div class="d-flex justify-content-start">
+                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a class="btn btn-outline-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+    
+    <div class="col-lg-3 col-md-6 mb-5">
+      <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Links de Utilidad</h5>
+          <div class="d-flex flex-column justify-content-start">
+                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Productos</a>
+                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Aplicaciones</a>
+                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Soporte</a>
+                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Contacto</a>
+                </div>
+         </div>
+        <div class="col-lg-3 col-md-6 mb-5">
+                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Contáctenos</h5>
+                <p><i class="fa fa-map-marker-alt mr-2"></i>Heredia, Belén, Cariari</p>
+                <p><i class="fa fa-phone-alt mr-2"></i>+(506) 8913-5715</p>
+                <p><i class="fa fa-envelope mr-2"></i>info@batsuenergy.com</p>
+                <p><i class="fa fa-envelope mr-2"></i>Lunes-Viernes 8:00AM-5:00PM CR</p>
+       </div>
+       <div class="col-lg-4 col-md-6 mb-5">
+            <a><img src="../../Logos/cr_flag.png" alt="CR Bandera" class="flag-icon"></a>
+       </div>
+       
+    </div>
+  </div>
+ <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="row">
+            <div class="col-lg-6 text-center text-md-left mb-3 mb-md-0">
+                <p class="m-0 text-white-50">Copyright &copy; <a href="#">2025 Batsú Energy Enterprise</a>. Todos los derechos reservados.</a>
+                </p>
+            </div>
+            <div class="col-lg-6 text-center text-md-right">
+                <p class="m-0 text-white-50">Designed by <a href="https://htmlcodex.com">HTML Codex</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+  <script>
+     function selectImage(img) {
+      document.querySelectorAll('.thumbnail').forEach(thumbnail => {
+        thumbnail.classList.remove('selected');
+      });
+      img.classList.add('selected');
+      document.getElementById('mainImage').src = img.src;
+      document.getElementById('zoomedImage').src = img.src;
+    }
+
+    const mainImageContainer = document.getElementById('mainImageContainer');
+    const zoomLens = document.getElementById('zoomLens');
+    const zoomResult = document.getElementById('zoomResult');
+    const zoomedImage = document.getElementById('zoomedImage');
+
+    mainImageContainer.addEventListener('mousemove', moveLens);
+    mainImageContainer.addEventListener('mouseenter', () => {
+      zoomLens.style.display = 'block';
+      zoomResult.style.display = 'block';
+    });
+    mainImageContainer.addEventListener('mouseleave', () => {
+      zoomLens.style.display = 'none';
+      zoomResult.style.display = 'none';
+    });
+
+    function moveLens(e) {
+      const bounds = mainImageContainer.getBoundingClientRect();
+      const x = e.clientX - bounds.left;
+      const y = e.clientY - bounds.top;
+
+      const lensWidth = zoomLens.offsetWidth;
+      const lensHeight = zoomLens.offsetHeight;
+
+      let lensX = x - lensWidth / 2;
+      let lensY = y - lensHeight / 2;
+
+      lensX = Math.max(0, Math.min(lensX, bounds.width - lensWidth));
+      lensY = Math.max(0, Math.min(lensY, bounds.height - lensHeight));
+
+      zoomLens.style.left = lensX + 'px';
+      zoomLens.style.top = lensY + 'px';
+
+      const zoomX = -lensX * 1;
+      const zoomY = -lensY * 1;
+
+      zoomedImage.style.left = zoomX + 'px';
+      zoomedImage.style.top = zoomY + 'px';
+    }
+  </script>
+</body>
+</html>
