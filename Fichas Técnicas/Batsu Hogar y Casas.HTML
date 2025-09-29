@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fichas Técnicas: Soluciones de Energía Residencial BATSÚ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        /* Importa una fuente profesional para el diseño */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+        
+        /* Estilos base para la visualización en pantalla */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5; /* Un gris suave para el fondo */
+        }
+        .card-enter {
+            animation: card-enter 0.5s ease-out forwards;
+        }
+        @keyframes card-enter {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Custom styles for disabled button */
+        .btn-disabled {
+            cursor: not-allowed;
+            background-color: #a1a1aa; /* zinc-400 */
+        }
+
+        /* Contenedor principal de cada página/ficha técnica */
+        .page {
+            background-color: white;
+            padding: 2cm; /* Márgenes generosos para un look profesional */
+            margin: 20px auto;
+            max-width: 210mm; /* Ancho de una hoja A4 */
+            min-height: 297mm; /* Alto de una hoja A4 */
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            page-break-after: always; /* Salto de página después de cada ficha al imprimir */
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Encabezado de la ficha */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #43a047; /* Verde BATSÚ */
+            padding-bottom: 1rem;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 2.5rem;
+            color: #002954; /* Azul BATSÚ */
+        }
+
+        /* Contenido principal dividido en columnas */
+        .main-content {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.75rem;
+            margin-top: 2rem;
+            flex-grow: 1;
+        }
+
+        .col-span-7 { grid-column: span 7 / span 7; }
+        .col-span-5 { grid-column: span 5 / span 5; }
+
+        .battery-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #43a047; /* Verde BATSÚ */
+            line-height: 1;
+        }
+
+        .battery-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #4b5563;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+            color: #374151;
+        }
+        
+        /* Grid para las características principales */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .feature-icon {
+            width: 36px;
+            height: 36px;
+            color: #43a047; /* Verde BATSÚ */
+        }
+
+        /* Grid para las especificaciones */
+        .spec-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.6rem;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dotted #d1d5db;
+            padding: 0.35rem 0;
+            font-size: 0.9rem;
+        }
+
+        .spec-label { color: #6b7280; }
+        .spec-value { font-weight: 500; color: #1f2937; }
+
+        /* Espacio para la imagen del producto */
+        .image-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 220px;
+            text-align: center;
+            color: #9ca3af;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        /* Pie de página */
+        .footer {
+            text-align: center;
+            margin-top: auto; /* Empuja el footer al final */
+            padding-top: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        /* Estilos específicos para la impresión */
+        @media print {
+            body { background-color: white; }
+            .page {
+                margin: 0;
+                box-shadow: none;
+                max-width: none;
+                min-height: 297mm;
+                padding: 1.5cm;
+                -webkit-print-color-adjust: exact; /* Asegura que los colores se impriman */
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========= FICHA TÉCNICA: SISTEMA TODO EN UNO 7.17 kWh ========= -->
+    <div class="page">
+        <header class="header">
+            <div class="logo">BATSÚ</div>
+            <div class="text-right">
+                <div class="font-bold text-xl">FICHA TÉCNICA</div>
+                <div>Soluciones de Energía Residencial (LiFePO4)</div>
+            </div>
+        </header>
+        <div class="main-content">
+            <div class="col-span-7">
+                <div class="battery-subtitle">SISTEMA DE ENERGÍA TODO EN UNO</div>
+                <div class="battery-title">Respaldo 7.17 kWh</div>
+                <p class="mt-4 text-gray-600 text-justify">
+                    Este sistema integral de energía combina una batería de alta capacidad con un potente inversor y un controlador de carga solar. Es una solución 'todo en uno' ideal para respaldo de energía en hogares y pequeños negocios, compatible con paneles solares y la red eléctrica, garantizando un suministro continuo y estable.
+                </p>
+                <div class="image-placeholder"><img src="img/Respaldo 7.17 kWh.png" alt="Batería"></div>
+                 <div class="mt-8">
+                    <div class="section-title">Aplicaciones Ideales</div>
+                    <div class="feature-grid">
+                        <div class="feature-item"><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" /></svg><div><div class="font-bold">Respaldo Energético</div><div class="text-sm text-gray-600">Protección ante apagones.</div></div></div>
+                        <div class="feature-item"><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.826-1.106-2.302 0-3.128.553-.413 1.278-.629 2.003-.629 1.172 0 2.131.956 2.131 2.131v1.865m2.131-1.865a2.131 2.131 0 0 1-2.131-2.131V6.344" /></svg><div><div class="font-bold">Ahorro en Factura</div><div class="text-sm text-gray-600">Uso de energía solar almacenada.</div></div></div>
+                        <div class="feature-item"><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18h18a2.25 2.25 0 0 1 2.25 2.25v10.5A2.25 2.25 0 0 1 19.5 18.75H4.5A2.25 2.25 0 0 1 2.25 16.5V4.5A2.25 2.25 0 0 1 4.5 2.25Z" /></svg><div><div class="font-bold">Pequeños Negocios</div><div class="text-sm text-gray-600">Alimentación para oficinas y comercios.</div></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-5">
+                <div class="section-title">Especificaciones Generales</div>
+                <div class="spec-grid">
+                    <div class="spec-item"><span class="spec-label">Energía Almacenada</span><span class="spec-value">7.17 kWh</span></div>
+                    <div class="spec-item"><span class="spec-label">Química Batería</span><span class="spec-value">LiFePO4</span></div>
+                    <div class="spec-item"><span class="spec-label">Protección IP</span><span class="spec-value">IP31 (Interior)</span></div>
+                </div>
+                 <div class="mt-6">
+                    <div class="section-title">Rendimiento y Potencia</div>
+                     <div class="spec-grid">
+                        <div class="spec-item"><span class="spec-label">Potencia de Salida</span><span class="spec-value">4000W</span></div>
+                        <div class="spec-item"><span class="spec-label">Potencia Pico (3s)</span><span class="spec-value">6000VA</span></div>
+                        <div class="spec-item"><span class="spec-label">Voltaje de Salida</span><span class="spec-value">120 Vac</span></div>
+                        <div class="spec-item"><span class="spec-label">Corriente Máx. Descarga</span><span class="spec-value">200A</span></div>
+                    </div>
+                </div>
+                 <div class="mt-6">
+                    <div class="section-title">Entradas y Carga</div>
+                     <div class="spec-grid">
+                        <div class="spec-item"><span class="spec-label">Potencia Solar Máx.</span><span class="spec-value">4000W</span></div>
+                        <div class="spec-item"><span class="spec-label">Voltaje MPPT</span><span class="spec-value">40-280 Vdc</span></div>
+                        <div class="spec-item"><span class="spec-label">Corriente Máx. Carga</span><span class="spec-value">200A</span></div>
+                        <div class="spec-item"><span class="spec-label">Corriente Máx. AC</span><span class="spec-value">40A</span></div>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <div class="section-title">Certificaciones</div>
+                     <div class="spec-grid">
+                        <div class="spec-item"><span class="spec-label">Seguridad</span><span class="spec-value">Clase de Protección 1</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">Copyright &copy; <a href="#">2025 Batsú Energy Enterprise</a>. Todos los derechos reservados.</a></footer>
+    </div>
+    
+    <!-- ========= FICHA TÉCNICA: BATERÍA MODULAR 15.36 kWh ========= -->
+    <div class="page">
+        <header class="header">
+            <div class="logo">BATSÚ</div>
+            <div class="text-right">
+                <div class="font-bold text-xl">FICHA TÉCNICA</div>
+                <div>Soluciones de Energía Residencial (LiFePO4)</div>
+            </div>
+        </header>
+        <div class="main-content">
+            <div class="col-span-7">
+                <div class="battery-subtitle">BATERÍA MODULAR DE ALTA CAPACIDAD</div>
+                <div class="battery-title">PowerStack 15.36 kWh</div>
+                <p class="mt-4 text-gray-600 text-justify">
+                    Diseñada para sistemas de almacenamiento de energía robustos, esta batería LiFePO4 de 15.36 kWh ofrece una escalabilidad y vida útil excepcionales. Es la base perfecta para sistemas solares residenciales, comerciales e industriales, permitiendo la conexión de hasta 16 unidades en paralelo para una capacidad masiva.
+                </p>
+                <div class="image-placeholder"><img src="img/PowerStack 15.36 kWh.png" alt="Batería"></div>
+                 <div class="mt-8">
+                    <div class="section-title">Características Principales</div>
+                    <div class="feature-grid">
+                        <div class="feature-item"><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" /></svg><div><div class="font-bold">Escalabilidad Masiva</div><div class="text-sm text-gray-600">Hasta 16 unidades en paralelo (245 kWh).</div></div></div>
+                        <div class="feature-item"><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg><div><div class="font-bold">Química Segura LiFePO4</div><div class="text-sm text-gray-600">Estabilidad y seguridad superiores.</div></div></div>
+                        <div class="feature-item"><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 11.667 0l3.181-3.183m-4.991-2.691v-4.992" /></svg><div><div class="font-bold">Vida Útil Extrema</div><div class="text-sm text-gray-600">Hasta 7000 ciclos (50% DoD).</div></div></div>
+                        <div class="feature-item"><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.82m5.84-2.56a17.96 17.96 0 0 0-5.84-2.56m0 0a17.96 17.96 0 0 0-5.84 2.56m5.84-2.56V4.72a6 6 0 0 1 5.84-2.35m-5.84 2.35a6 6 0 0 0-5.84 2.35m10.22 0a17.96 17.96 0 0 0 2.62 5.84m2.62 0a17.96 17.96 0 0 1-2.62 5.84m0 0a6 6 0 0 1-7.38 5.84m7.38-5.84a6 6 0 0 0-7.38-5.84m7.38 5.84-1.13-1.13m-5.84 0-1.13 1.13m1.13-1.13a6 6 0 0 1 3.42 0m-3.42 0a6 6 0 0 0-3.42 0" /></svg><div><div class="font-bold">Alta Potencia</div><div class="text-sm text-gray-600">Picos de descarga de hasta 15.36 kW.</div></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-5">
+                <div class="section-title">Capacidad y Vida Útil</div>
+                <div class="spec-grid">
+                    <div class="spec-item"><span class="spec-label">Energía</span><span class="spec-value">15.36 kWh</span></div>
+                    <div class="spec-item"><span class="spec-label">Ciclos (80% DoD)</span><span class="spec-value">> 4500</span></div>
+                    <div class="spec-item"><span class="spec-label">Ciclos (50% DoD)</span><span class="spec-value">> 7000</span></div>
+                    <div class="spec-item"><span class="spec-label">Capacidad Retenida</span><span class="spec-value">80%</span></div>
+                </div>
+                 <div class="mt-6">
+                    <div class="section-title">Rendimiento y Potencia</div>
+                     <div class="spec-grid">
+                        <div class="spec-item"><span class="spec-label">Potencia Continua</span><span class="spec-value">10.24 kW</span></div>
+                        <div class="spec-item"><span class="spec-label">Potencia Pico (3s)</span><span class="spec-value">15.36 kW</span></div>
+                        <div class="spec-item"><span class="spec-label">Voltaje Nominal</span><span class="spec-value">51.2 V</span></div>
+                        <div class="spec-item"><span class="spec-label">Voltaje Mínimo (Corte)</span><span class="spec-value">48V</span></div>
+                    </div>
+                </div>
+                 <div class="mt-6">
+                    <div class="section-title">Especificaciones Físicas</div>
+                     <div class="spec-grid">
+                        <div class="spec-item"><span class="spec-label">Modelo</span><span class="spec-value">RS-51300</span></div>
+                        <div class="spec-item"><span class="spec-label">Dimensiones (mm)</span><span class="spec-value">954x496x250</span></div>
+                        <div class="spec-item"><span class="spec-label">Peso</span><span class="spec-value">89.8 kg</span></div>
+                        <div class="spec-item"><span class="spec-label">Protección IP</span><span class="spec-value">IP50 (Interior)</span></div>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <div class="section-title">Certificaciones</div>
+                    <ul class="text-sm text-gray-600 list-disc list-inside">
+                        <li>MSDS</li>
+                        <li>UN38.3 (Transporte)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">Copyright &copy; <a href="#">2025 Batsú Energy Enterprise</a>. Todos los derechos reservados.</a></footer>
+    </div>
+
+    <!-- ========= FICHA TÉCNICA: INVERSOR HÍBRIDO 12kW ========= -->
+    <div class="page">
+        <header class="header">
+            <div class="logo">BATSÚ</div>
+            <div class="text-right">
+                <div class="font-bold text-xl">FICHA TÉCNICA</div>
+                <div>Soluciones de Energía Residencial (LiFePO4)</div>
+            </div>
+        </header>
+        <div class="main-content">
+            <div class="col-span-7">
+                <div class="battery-subtitle">CEREBRO INTELIGENTE PARA TU SISTEMA SOLAR</div>
+                <div class="battery-title">Inversor Híbrido 12kW</div>
+                <p class="mt-4 text-gray-600 text-justify">
+                    Este inversor híbrido de fase dividida es el centro de control de cualquier sistema de energía moderno. Con 12,000 W de potencia, gestiona de forma inteligente la energía de paneles solares, baterías de 48V y la red eléctrica. Su capacidad de conexión en paralelo y protección IP65 lo hacen ideal para instalaciones residenciales y comerciales exigentes.
+                </p>
+                <div class="image-placeholder"><img src="img/Inversor Híbrido 12kW.png" alt="Batería"></div>
+                 <div class="mt-8">
+                    <div class="section-title">Características Principales</div>
+                    <div class="feature-grid">
+                        <div class="feature-item"><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75 12 3m0 0 3.75 3.75M12 3v18" /></svg><div><div class="font-bold">Potencia Superior</div><div class="text-sm text-gray-600">12 kW de salida y picos de 24 kVA.</div></div></div>
+                        <div class="feature-item"><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg><div><div class="font-bold">Transferencia Rápida</div><div class="text-sm text-gray-600">10ms para respaldo sin interrupciones.</div></div></div>
+                        <div class="feature-item"><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg><div><div class="font-bold">5 Años de Garantía</div><div class="text-sm text-gray-600">Calidad y respaldo asegurados.</div></div></div>
+                        <div class="feature-item"><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582" /></svg><div><div class="font-bold">Protección Total IP65</div><div class="text-sm text-gray-600">Para uso seguro en exteriores.</div></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-5">
+                <div class="section-title">Rendimiento y Potencia</div>
+                <div class="spec-grid">
+                    <div class="spec-item"><span class="spec-label">Potencia de Salida</span><span class="spec-value">12,000 W</span></div>
+                    <div class="spec-item"><span class="spec-label">Potencia Pico</span><span class="spec-value">24,000 VA</span></div>
+                    <div class="spec-item"><span class="spec-label">Voltaje Salida</span><span class="spec-value">120/240 Vac</span></div>
+                    <div class="spec-item"><span class="spec-label">Eficiencia Máxima</span><span class="spec-value">97.5%</span></div>
+                </div>
+                 <div class="mt-6">
+                    <div class="section-title">Entradas y Compatibilidad</div>
+                     <div class="spec-grid">
+                        <div class="spec-item"><span class="spec-label">Seguidores Solares (MPPT)</span><span class="spec-value">2</span></div>
+                        <div class="spec-item"><span class="spec-label">Potencia Solar Máx.</span><span class="spec-value">13,200 W</span></div>
+                        <div class="spec-item"><span class="spec-label">Voltaje Batería</span><span class="spec-value">48V (Li-ion/Plomo)</span></div>
+                        <div class="spec-item"><span class="spec-label">Capacidad Paralelo</span><span class="spec-value">Hasta 6 unidades</span></div>
+                    </div>
+                </div>
+                 <div class="mt-6">
+                    <div class="section-title">Especificaciones Físicas</div>
+                     <div class="spec-grid">
+                        <div class="spec-item"><span class="spec-label">Modelo</span><span class="spec-value">HESP48120U200-H</span></div>
+                        <div class="spec-item"><span class="spec-label">Dimensiones (mm)</span><span class="spec-value">750x440x240</span></div>
+                        <div class="spec-item"><span class="spec-label">Peso</span><span class="spec-value">42 kg</span></div>
+                        <div class="spec-item"><span class="spec-label">Protección IP</span><span class="spec-value">IP65 (Exterior)</span></div>
+                    </div>
+                </div>
+                 <div class="mt-6">
+                    <div class="section-title">Comunicaciones</div>
+                     <div class="spec-grid">
+                        <div class="spec-item"><span class="spec-label">Interfaces</span><span class="spec-value">RS485/CAN/USB/WiFi</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">Copyright &copy; <a href="#">2025 Batsú Energy Enterprise</a>. Todos los derechos reservados.</a></footer>
+    </div>
+    
+    <body class="text-slate-800">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-5xl">
+        
+        <header class="text-center mb-10">
+            <h1 class="text-3xl sm:text-4xl font-bold text-emerald-600">Calculadora de Ahorro Energético</h1>
+            <p class="mt-2 text-slate-500 max-w-2xl mx-auto">Ingresa el monto de tu factura y descubre el potencial de ahorro con un sistema de baterías inteligente.</p>
+        </header>
+
+        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-lg border border-slate-200">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h2 class="text-xl font-semibold text-slate-700 mb-4 flex items-center">
+                        <span class="bg-emerald-500 text-white rounded-full h-8 w-8 text-sm font-bold flex items-center justify-center mr-3">1</span>
+                        Ingresa tu Factura
+                    </h2>
+                    <label for="montoFactura" class="block text-sm font-medium text-slate-600 mb-1">Monto Mensual (₡)</label>
+                    <div class="relative">
+                        <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">₡</span>
+                        <input type="number" id="montoFactura" placeholder="Ej: 168770" class="w-full pl-7 pr-4 py-2 rounded-lg border-slate-300 focus:ring-emerald-500 focus:border-emerald-500 transition">
+                    </div>
+                    <p id="error-message" class="text-red-500 text-sm mt-2 hidden">Por favor, ingresa un monto válido.</p>
+                </div>
+                <div>
+                    <h2 class="text-xl font-semibold text-slate-700 mb-4 flex items-center">
+                        <span class="bg-emerald-500 text-white rounded-full h-8 w-8 text-sm font-bold flex items-center justify-center mr-3">2</span>
+                        Elige una Estrategia
+                    </h2>
+                    <div class="space-y-3">
+                        <label class="flex items-center p-3 border rounded-lg hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="calculationMethod" value="optimize" class="h-4 w-4 text-emerald-600 focus:ring-emerald-500" checked>
+                            <span class="ml-3 text-sm">
+                                <strong class="block text-slate-700">Optimización Total</strong>
+                                <span class="text-slate-500">Maximiza el ahorro mensual.</span>
+                            </span>
+                        </label>
+                         <label class="flex items-center p-3 border rounded-lg hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="calculationMethod" value="rule35" class="h-4 w-4 text-emerald-600 focus:ring-emerald-500">
+                             <span class="ml-3 text-sm">
+                                <strong class="block text-slate-700">Balance Costo-Beneficio</strong>
+                                <span class="text-slate-500">Cubre el 35% del consumo diario.</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-slate-200">
+                <button id="calculateBtn" class="w-full bg-emerald-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-transform transform hover:scale-[1.02] flex items-center justify-center">
+                    <svg id="calculate-icon" class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    <svg id="loading-spinner" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span id="button-text">Calcular Ahorro</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="resultsSection" class="mt-10 hidden">
+            <h2 class="text-2xl font-bold text-center mb-8">Análisis de Resultados</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+                <!-- Main Comparison -->
+                <div class="lg:col-span-3 bg-white p-6 rounded-2xl shadow-lg border border-slate-200 card-enter">
+                    <h3 class="text-xl font-semibold text-slate-700 mb-4 text-center">Comparación de Factura Mensual</h3>
+                    <div class="h-64"><canvas id="savingsChart"></canvas></div>
+                </div>
+
+                <!-- System Details -->
+                <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-lg border border-slate-200 card-enter" style="animation-delay: 100ms;">
+                    <h3 class="text-xl font-semibold text-slate-700 mb-4 text-center">Sistema Recomendado</h3>
+                    <div class="flex items-baseline justify-center my-2">
+                        <span id="batteryCount" class="text-6xl font-bold text-emerald-600">0</span>
+                        <span class="text-xl font-medium text-slate-500 ml-2">Baterías</span>
+                    </div>
+                    <div class="mt-4 space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-slate-500">Consumo diario total:</span>
+                            <span id="dailyConsumption" class="font-medium text-slate-700">0 kWh</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-500">Cubierto por baterías:</span>
+                            <span id="coveredByBatteries" class="font-medium text-emerald-600">0 kWh</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Analysis -->
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-200 card-enter" style="animation-delay: 200ms;">
+                    <h3 class="text-lg font-semibold text-slate-700 mb-2">Inversión Total</h3>
+                    <p id="investmentUSD" class="text-3xl font-bold text-emerald-600">$0</p>
+                    <p id="investmentCRC" class="text-sm text-slate-500">~ ₡0</p>
+                    <button id="investment-details-btn" class="text-xs text-emerald-600 hover:text-emerald-800 mt-2 flex items-center transition">
+                        <span id="btn-text-details">Ver desglose</span>
+                        <svg id="arrow-down" class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <svg id="arrow-up" class="w-4 h-4 ml-1 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+                    </button>
+                    <div id="investment-details-content" class="hidden mt-4 pt-4 border-t border-slate-200 text-sm space-y-2">
+                        <div class="flex justify-between">
+                            <span class="text-slate-500">Baterías:</span>
+                            <span id="investmentDetailBatteries" class="font-medium text-slate-700">0 x $0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-500">Inversor:</span>
+                            <span id="investmentDetailInverter" class="font-medium text-slate-700">1 x $0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-200 card-enter" style="animation-delay: 300ms;">
+                    <h3 class="text-lg font-semibold text-slate-700 mb-2">Recuperación</h3>
+                    <p id="paybackPeriod" class="text-3xl font-bold text-slate-800">0 años</p>
+                    <p class="text-sm text-slate-500">Tiempo para recuperar inversión</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-200 card-enter" style="animation-delay: 400ms;">
+                     <h3 class="text-lg font-semibold text-slate-700 mb-2">ROI Anual</h3>
+                    <p id="roiPercentage" class="text-3xl font-bold text-slate-800">0%</p>
+                    <p class="text-sm text-slate-500">Retorno de inversión</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-200 card-enter" style="animation-delay: 500ms;">
+                     <h3 class="text-lg font-semibold text-slate-700 mb-2">Ahorro a 10 Años</h3>
+                    <p id="savings10years" class="text-3xl font-bold text-slate-800">₡0</p>
+                    <p class="text-sm text-slate-500">Proyección de ahorro total</p>
+                </div>
+            </div>
+        </div>
+        <footer class="text-center mt-10 text-xs text-slate-400">
+            <p>* Los cálculos son una estimación. Los resultados reales pueden variar.</p>
+        </footer>
+    </div>
+
+    <script>
+        const calculateBtn = document.getElementById('calculateBtn');
+        const resultsSection = document.getElementById('resultsSection');
+        const montoFacturaInput = document.getElementById('montoFactura');
+        const errorMessage = document.getElementById('error-message');
+        const investmentDetailsBtn = document.getElementById('investment-details-btn');
+        const investmentDetailsContent = document.getElementById('investment-details-content');
+        const btnTextDetails = document.getElementById('btn-text-details');
+        const arrowDown = document.getElementById('arrow-down');
+        const arrowUp = document.getElementById('arrow-up');
+        let savingsChart = null;
+
+        // --- CONSTANTS ---
+        const CAPACIDAD_BATERIA_MES = 450.0;
+        const CAPACIDAD_BATERIA_DIA = 15.0;
+        const TARIFA_NOCTURNA = 26.94;
+        const TARIFA_PUNTA = 156.96;
+        const TARIFA_VALLE = 64.35;
+        const IVA_PORCENTAJE = 0.13;
+        const BOMBEROS_PORCENTAJE = 0.0225;
+        const ALUMBRADO_PORCENTAJE = 0.025;
+        const COSTO_BATERIA_USD = 2528.80;
+        const COSTO_INVERSOR_USD = 1800.32;
+        const TIPO_CAMBIO = 515.0;
+        const PORCENTAJE_ALUMBRADO_CSV = 0.025;
+        const PORCENTAJE_BOMBEROS_CSV = 0.0155;
+        const PORCENTAJE_POTENCIA_CSV = 0.2193;
+        const COSTO_KWH_CSV = 78.40;
+
+        function calcularKwhDesdeFactura(montoFactura) {
+            const alumbradoEstimado = montoFactura * PORCENTAJE_ALUMBRADO_CSV;
+            const bomberosEstimado = montoFactura * PORCENTAJE_BOMBEROS_CSV;
+            const consumoTotalConImpuestos = montoFactura - alumbradoEstimado - bomberosEstimado;
+            const consumoTotalSinIva = consumoTotalConImpuestos / (1 + IVA_PORCENTAJE);
+            const potenciaEstimada = consumoTotalSinIva * PORCENTAJE_POTENCIA_CSV;
+            const consumoLimpioColones = consumoTotalSinIva - potenciaEstimada;
+            const consumoKwhCalculado = consumoLimpioColones / COSTO_KWH_CSV;
+            return consumoKwhCalculado > 0 ? consumoKwhCalculado : 0;
+        }
+        
+        function toggleLoading(isLoading) {
+            document.getElementById('loading-spinner').classList.toggle('hidden', !isLoading);
+            document.getElementById('calculate-icon').classList.toggle('hidden', isLoading);
+            document.getElementById('button-text').textContent = isLoading ? 'Calculando...' : 'Calcular Ahorro';
+            calculateBtn.disabled = isLoading;
+            calculateBtn.classList.toggle('btn-disabled', isLoading);
+        }
+
+        investmentDetailsBtn.addEventListener('click', () => {
+            investmentDetailsContent.classList.toggle('hidden');
+            arrowDown.classList.toggle('hidden');
+            arrowUp.classList.toggle('hidden');
+            btnTextDetails.textContent = investmentDetailsContent.classList.contains('hidden') ? 'Ver desglose' : 'Ocultar desglose';
+        });
+
+        calculateBtn.addEventListener('click', () => {
+            const montoFactura = parseFloat(montoFacturaInput.value);
+            if (isNaN(montoFactura) || montoFactura <= 0) {
+                errorMessage.classList.remove('hidden');
+                montoFacturaInput.focus();
+                return;
+            }
+            errorMessage.classList.add('hidden');
+            
+            toggleLoading(true);
+            
+            setTimeout(() => {
+                const method = document.querySelector('input[name="calculationMethod"]:checked').value;
+                const consumoKwh = calcularKwhDesdeFactura(montoFactura);
+                const consumoDiario = consumoKwh / 30.0;
+                
+                let bateriasRecomendadas = 0;
+                if (method === 'optimize') {
+                    bateriasRecomendadas = Math.trunc(consumoKwh / CAPACIDAD_BATERIA_MES);
+                    if (bateriasRecomendadas === 0 && consumoKwh > 0) bateriasRecomendadas = 1; 
+                } else {
+                    const objetivoDiario = consumoDiario * 0.35;
+                    bateriasRecomendadas = Math.ceil(objetivoDiario / CAPACIDAD_BATERIA_DIA);
+                }
+                
+                const consumoDiarioCubierto = Math.min(bateriasRecomendadas * CAPACIDAD_BATERIA_DIA, consumoDiario);
+                let consumoCubiertoPorBateria = CAPACIDAD_BATERIA_MES * bateriasRecomendadas;
+                consumoCubiertoPorBateria = Math.min(consumoCubiertoPorBateria, consumoKwh);
+                const consumoRemanente = consumoKwh - consumoCubiertoPorBateria;
+                
+                const subtotalNuevaFactura = (consumoCubiertoPorBateria * TARIFA_NOCTURNA) + 
+                                            ((consumoRemanente / 2) * TARIFA_PUNTA) + 
+                                            ((consumoRemanente / 2) * TARIFA_VALLE);
+                const totalNuevaFactura = subtotalNuevaFactura * (1 + IVA_PORCENTAJE + BOMBEROS_PORCENTAJE + ALUMBRADO_PORCENTAJE);
+                
+                const ahorroMensual = montoFactura - totalNuevaFactura;
+                const ahorroAnual = ahorroMensual * 12;
+                const inversionUSD = (COSTO_BATERIA_USD * bateriasRecomendadas) + COSTO_INVERSOR_USD;
+                const inversionCRC = inversionUSD * TIPO_CAMBIO;
+                const paybackAños = (ahorroAnual > 0) ? inversionCRC / ahorroAnual : Infinity;
+                const roiAnual = (inversionCRC > 0) ? (ahorroAnual / inversionCRC) * 100 : 0;
+                const ahorro10Años = ahorroAnual * 10;
+
+                displayResults({
+                    baterias: bateriasRecomendadas,
+                    consumoDiario: consumoDiario,
+                    consumoDiarioCubierto: consumoDiarioCubierto,
+                    facturaActual: montoFactura,
+                    facturaNueva: totalNuevaFactura,
+                    inversionUSD: inversionUSD,
+                    inversionCRC: inversionCRC,
+                    paybackAños: paybackAños,
+                    roiAnual: roiAnual,
+                    ahorro10Años: ahorro10Años
+                });
+                toggleLoading(false);
+            }, 500); // Simulate calculation delay
+        });
+
+        function displayResults(data) {
+            resultsSection.classList.remove('hidden');
+            
+            const formatCRC = new Intl.NumberFormat('es-CR', { style: 'currency', currency: 'CRC' });
+            const formatUSD = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+
+            document.getElementById('batteryCount').textContent = data.baterias;
+            document.getElementById('dailyConsumption').textContent = `${data.consumoDiario.toFixed(1)} kWh`;
+            document.getElementById('coveredByBatteries').textContent = `${data.consumoDiarioCubierto.toFixed(1)} kWh`;
+            
+            document.getElementById('investmentUSD').textContent = formatUSD.format(data.inversionUSD);
+            document.getElementById('investmentCRC').textContent = `~ ${formatCRC.format(data.inversionCRC)}`;
+            document.getElementById('investmentDetailBatteries').textContent = `${data.baterias} x ${formatUSD.format(COSTO_BATERIA_USD)}`;
+            document.getElementById('investmentDetailInverter').textContent = `1 x ${formatUSD.format(COSTO_INVERSOR_USD)}`;
+
+            // Reset breakdown view on new calculation
+            investmentDetailsContent.classList.add('hidden');
+            arrowDown.classList.remove('hidden');
+            arrowUp.classList.add('hidden');
+            btnTextDetails.textContent = 'Ver desglose';
+
+            document.getElementById('paybackPeriod').textContent = isFinite(data.paybackAños) ? `${data.paybackAños.toFixed(1)} años` : 'N/A';
+            document.getElementById('roiPercentage').textContent = isFinite(data.roiAnual) ? `${data.roiAnual.toFixed(1)}%` : 'N/A';
+            document.getElementById('savings10years').textContent = formatCRC.format(data.ahorro10Años > 0 ? data.ahorro10Años : 0);
+            
+            const ctx = document.getElementById('savingsChart').getContext('2d');
+            if (savingsChart) {
+                savingsChart.destroy();
+            }
+            savingsChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Factura Actual', 'Nueva Factura'],
+                    datasets: [{
+                        label: 'Costo Mensual',
+                        data: [data.facturaActual, data.facturaNueva > 0 ? data.facturaNueva : 0],
+                        backgroundColor: ['#ef4444', '#10b981'],
+                        borderColor: ['#dc2626', '#059669'],
+                        borderWidth: 1,
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return formatCRC.format(context.raw);
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '₡' + (value / 1000) + 'k';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</body>
+</html>
