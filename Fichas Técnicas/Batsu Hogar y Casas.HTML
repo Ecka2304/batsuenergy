@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fichas Técnicas: Soluciones de Energía Residencial BATSÚ</title>
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../css/style.css" rel="stylesheet">
+    <!-- icon -->
+    <link href="../Logos/icono.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <style>
+        * {box-sizing: border-box;}
+
+        body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f7f9fa;
+        margin: 0;
+        padding: 0;
+        }
+
+        /* Fix navbar overlap */
+        body::before {
+        content: "";
+        display: block;
+        height: 120px;
+        }
+
+        /* ===== PAGE CONTAINER ===== */
+        .page {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 30px;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        /* Encabezado de la ficha */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #16a34a; /* Línea verde distintiva */
+            padding-bottom: 1rem;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 2.5rem;
+            color: #1a202c;
+        }
+
+        /* ===== CONTENT GRID ===== */
+        .main-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+        }
+
+        /* ===== BATTERY INFO ===== */
+        .battery-title {
+        font-size: 2.8rem;
+        font-weight: 900;
+        color: #43a047;
+        line-height: 1.1;
+        }
+
+        .battery-subtitle {
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: #4b5563;
+        }
+
+        /* ===== FEATURES ===== */
+        .section-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #374151;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 0.5rem;
+        }
+
+        .feature-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        }
+
+        .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        }
+
+        .feature-icon {
+        width: 36px;
+        height: 36px;
+        color: #43a047;
+        }
+
+        /* ===== SPECS ===== */
+        .spec-grid {
+        display: grid;
+        gap: 0.5rem;
+        }
+
+        .spec-item {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px dotted #d1d5db;
+        padding: 0.3rem 0;
+        font-size: 0.95rem;
+        }
+
+        .spec-label {
+        color: #6b7280;
+        }
+
+        .spec-value {
+        font-weight: 600;
+        color: #1f2937;
+        }
+
+        /* ===== IMAGE ===== */
+        .image-placeholder {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px auto;
+        }
+
+        .image-placeholder img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+        margin-top: 80px;
+        }
+
+        @media (min-width: 992px) {
+        .navbar .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .mega-menu {
+            width: 600px;
+            left: 0;
+        }
+        }
+
+        .navbar .dropdown-menu.mega-menu {
+        width: 600px;
+        }
+
+        .navbar .dropdown-menu.mega-menu.dropdown-menu-right {
+        right: 0;
+        left: auto;
+        }
+
+
+        /* Estética del megamenú */
+        .mega-menu {
+        border-radius: 8px;
+        background-color: white;
+        padding: 1rem;
+
+        min-width: 300px;
+        max-width: 90vw; 
+        left: 0;
+        right: 0; 
+        margin: auto; 
+        }
+
+        .mega-menu .dropdown-header {
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 0.5rem;
+        border-bottom: 1px solid #dee2e6;
+        }
+
+        .mega-menu .dropdown-item {
+        padding: 0.25rem 0;
+        color: #333;
+        }
+
+        .mega-menu .dropdown-item:hover {
+        color: #007bff;
+        }
+
+</style>
+    </style>
+</head>
+<body>
+    <!-- Encabezado -->
+   <div class="container-fluid position-relative nav-bar p-0">
+        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+            <nav class="navbar navbar-expand-lg custom-navbar shadow-lg py-3 py-lg-0 pl-3 pl-lg-5 fixed-top bg-white">
+                <a href="../index.html" class="navbar-brand">
+                    <img src="../Logos/Logo Inicio.png" alt="Logo de Batsú" height="100px">
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto py-0">
+                        <a href="../index.html" class="nav-item nav-link active">Inicio</a>
+                          <!-- Navbar Aplicaciones -->
+               <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" id="aplicacionesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Aplicaciones</a>
+                <div class="dropdown-menu mega-menu shadow dropdown-menu-right" aria-labelledby="aplicacionesDropdown">
+                    <div class="row px-3 py-4">
+                    <div class="col-md-6">
+                        <h6 class="dropdown-header">Baterías de Almacenamiento</h6>
+                        <a class="dropdown-item" href="Batsu Hogar y Casas.HTML">Residencial</a>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="dropdown-header">Baterías de Potencia</h6>
+                        <a class="dropdown-item" href="Batsu Golf.html">Carritos de Golf</a>
+                        <a class="dropdown-item" href="Batsu Nautico.html">Náutico</a>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+                        <a href="../sobrenosotros.html" class="nav-item nav-link">Sobre Nosotros</a>
+                        <a href="../contacto.html" class="nav-item nav-link">Contacto</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- ========= FICHA TÉCNICA: SISTEMA TODO EN UNO 7.17 kWh ========= -->
+    <div class="page">
+        <header class="header">
+            <div class="logo">BATSÚ</div>
+            <div class="text-right">
+                <div class="font-bold text-xl">FICHA TÉCNICA</div>
+                <div>Soluciones de Energía Residencial (LiFePO4)</div>
+            </div>
+        </header>
+        <div class="main-content">
+            <div class="col-span-7">
+                <div class="battery-subtitle">SISTEMA DE ENERGÍA TODO EN UNO</div>
+                <div class="battery-title">Respaldo 7.17 kWh</div>
+                <p class="mt-4 text-gray-600 text-justify">
+                    Este sistema integral de energía combina una batería de alta capacidad con un potente inversor y un controlador de carga solar. Es una solución 'todo en uno' ideal para respaldo de energía en hogares y pequeños negocios, compatible con paneles solares y la red eléctrica, garantizando un suministro continuo y estable.
+                </p>
+                <div class="image-placeholder"><img src="img/Respaldo 7.17 kWh.png" alt="Batería"></div>
+                 <div class="mt-8">
+                    <div class="section-title">Aplicaciones Ideales</div>
+                    <div class="feature-grid">
+                        <div class="feature-item"><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" /></svg><div><div class="font-bold">Respaldo Energético</div><div class="text-sm text-gray-600">Protección ante apagones.</div></div></div>
+                        <div class="feature-item"><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.826-1.106-2.302 0-3.128.553-.413 1.278-.629 2.003-.629 1.172 0 2.131.956 2.131 2.131v1.865m2.131-1.865a2.131 2.131 0 0 1-2.131-2.131V6.344" /></svg><div><div class="font-bold">Ahorro en Factura</div><div class="text-sm text-gray-600">Uso de energía solar almacenada.</div></div></div>
+                        <div class="feature-item"><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18h18a2.25 2.25 0 0 1 2.25 2.25v10.5A2.25 2.25 0 0 1 19.5 18.75H4.5A2.25 2.25 0 0 1 2.25 16.5V4.5A2.25 2.25 0 0 1 4.5 2.25Z" /></svg><div><div class="font-bold">Pequeños Negocios</div><div class="text-sm text-gray-600">Alimentación para oficinas y comercios.</div></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-5">
+                <div class="section-title">Especificaciones Generales</div>
+                <div class="spec-grid">
+                    <div class="spec-item"><span class="spec-label">Energía Almacenada</span><span class="spec-value">7.17 kWh</span></div>
+                    <div class="spec-item"><span class="spec-label">Química Batería</span><span class="spec-value">LiFePO4</span></div>
+                    <div class="spec-item"><span class="spec-label">Protección IP</span><span class="spec-value">IP31 (Interior)</span></div>
+                </div>
+                 <div class="mt-6">
+                    <div class="section-title">Rendimiento y Potencia</div>
+                     <div class="spec-grid">
+                        <div class="spec-item"><span class="spec-label">Potencia de Salida</span><span class="spec-value">4000W</span></div>
+                        <div class="spec-item"><span class="spec-label">Potencia Pico (3s)</span><span class="spec-value">6000VA</span></div>
+                        <div class="spec-item"><span class="spec-label">Voltaje de Salida</span><span class="spec-value">120 Vac</span></div>
+                        <div class="spec-item"><span class="spec-label">Corriente Máx. Descarga</span><span class="spec-value">200A</span></div>
+                    </div>
+                </div>
+                 <div class="mt-6">
+                    <div class="section-title">Entradas y Carga</div>
+                     <div class="spec-grid">
+                        <div class="spec-item"><span class="spec-label">Potencia Solar Máx.</span><span class="spec-value">4000W</span></div>
+                        <div class="spec-item"><span class="spec-label">Voltaje MPPT</span><span class="spec-value">40-280 Vdc</span></div>
+                        <div class="spec-item"><span class="spec-label">Corriente Máx. Carga</span><span class="spec-value">200A</span></div>
+                        <div class="spec-item"><span class="spec-label">Corriente Máx. AC</span><span class="spec-value">40A</span></div>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <div class="section-title">Certificaciones</div>
+                     <div class="spec-grid">
+                        <div class="spec-item"><span class="spec-label">Seguridad</span><span class="spec-value">Clase de Protección 1</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <!-- ========= FICHA TÉCNICA: BATERÍA MODULAR 15.36 kWh ========= -->
+    <div class="page">
+        <header class="header">
+            <div class="logo">BATSÚ</div>
+            <div class="text-right">
+                <div class="font-bold text-xl">FICHA TÉCNICA</div>
+                <div>Soluciones de Energía Residencial (LiFePO4)</div>
+            </div>
+        </header>
+        <div class="main-content">
+            <div class="col-span-7">
+                <div class="battery-subtitle">BATERÍA MODULAR DE ALTA CAPACIDAD</div>
+                <div class="battery-title">PowerStack 15.36 kWh</div>
+                <p class="mt-4 text-gray-600 text-justify">
+                    Diseñada para sistemas de almacenamiento de energía robustos, esta batería LiFePO4 de 15.36 kWh ofrece una escalabilidad y vida útil excepcionales. Es la base perfecta para sistemas solares residenciales, comerciales e industriales, permitiendo la conexión de hasta 16 unidades en paralelo para una capacidad masiva.
+                </p>
+                <div class="image-placeholder"><img src="img/PowerStack 15.36 kWh.png" alt="Batería"></div>
+                 <div class="mt-8">
+                    <div class="section-title">Características Principales</div>
+                    <div class="feature-grid">
+                        <div class="feature-item"><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" /></svg><div><div class="font-bold">Escalabilidad Masiva</div><div class="text-sm text-gray-600">Hasta 16 unidades en paralelo (245 kWh).</div></div></div>
+                        <div class="feature-item"><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg><div><div class="font-bold">Química Segura LiFePO4</div><div class="text-sm text-gray-600">Estabilidad y seguridad superiores.</div></div></div>
+                        <div class="feature-item"><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 11.667 0l3.181-3.183m-4.991-2.691v-4.992" /></svg><div><div class="font-bold">Vida Útil Extrema</div><div class="text-sm text-gray-600">Hasta 7000 ciclos (50% DoD).</div></div></div>
+                        <div class="feature-item"><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.82m5.84-2.56a17.96 17.96 0 0 0-5.84-2.56m0 0a17.96 17.96 0 0 0-5.84 2.56m5.84-2.56V4.72a6 6 0 0 1 5.84-2.35m-5.84 2.35a6 6 0 0 0-5.84 2.35m10.22 0a17.96 17.96 0 0 0 2.62 5.84m2.62 0a17.96 17.96 0 0 1-2.62 5.84m0 0a6 6 0 0 1-7.38 5.84m7.38-5.84a6 6 0 0 0-7.38-5.84m7.38 5.84-1.13-1.13m-5.84 0-1.13 1.13m1.13-1.13a6 6 0 0 1 3.42 0m-3.42 0a6 6 0 0 0-3.42 0" /></svg><div><div class="font-bold">Alta Potencia</div><div class="text-sm text-gray-600">Picos de descarga de hasta 15.36 kW.</div></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-5">
+                <div class="section-title">Capacidad y Vida Útil</div>
+                <div class="spec-grid">
+                    <div class="spec-item"><span class="spec-label">Energía</span><span class="spec-value">15.36 kWh</span></div>
+                    <div class="spec-item"><span class="spec-label">Ciclos (80% DoD)</span><span class="spec-value">> 4500</span></div>
+                    <div class="spec-item"><span class="spec-label">Ciclos (50% DoD)</span><span class="spec-value">> 7000</span></div>
+                    <div class="spec-item"><span class="spec-label">Capacidad Retenida</span><span class="spec-value">80%</span></div>
+                </div>
+                 <div class="mt-6">
+                    <div class="section-title">Rendimiento y Potencia</div>
+                     <div class="spec-grid">
+                        <div class="spec-item"><span class="spec-label">Potencia Continua</span><span class="spec-value">10.24 kW</span></div>
+                        <div class="spec-item"><span class="spec-label">Potencia Pico (3s)</span><span class="spec-value">15.36 kW</span></div>
+                        <div class="spec-item"><span class="spec-label">Voltaje Nominal</span><span class="spec-value">51.2 V</span></div>
+                        <div class="spec-item"><span class="spec-label">Voltaje Mínimo (Corte)</span><span class="spec-value">48V</span></div>
+                    </div>
+                </div>
+                 <div class="mt-6">
+                    <div class="section-title">Especificaciones Físicas</div>
+                     <div class="spec-grid">
+                        <div class="spec-item"><span class="spec-label">Modelo</span><span class="spec-value">RS-51300</span></div>
+                        <div class="spec-item"><span class="spec-label">Dimensiones (mm)</span><span class="spec-value">954x496x250</span></div>
+                        <div class="spec-item"><span class="spec-label">Peso</span><span class="spec-value">89.8 kg</span></div>
+                        <div class="spec-item"><span class="spec-label">Protección IP</span><span class="spec-value">IP50 (Interior)</span></div>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <div class="section-title">Certificaciones</div>
+                    <ul class="text-sm text-gray-600 list-disc list-inside">
+                        <li>MSDS</li>
+                        <li>UN38.3 (Transporte)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========= FICHA TÉCNICA: INVERSOR HÍBRIDO 12kW ========= -->
+    <div class="page">
+        <header class="header">
+            <div class="logo">BATSÚ</div>
+            <div class="text-right">
+                <div class="font-bold text-xl">FICHA TÉCNICA</div>
+                <div>Soluciones de Energía Residencial (LiFePO4)</div>
+            </div>
+        </header>
+        <div class="main-content">
+            <div class="col-span-7">
+                <div class="battery-subtitle">CEREBRO INTELIGENTE PARA TU SISTEMA SOLAR</div>
+                <div class="battery-title">Inversor Híbrido 12kW</div>
+                <p class="mt-4 text-gray-600 text-justify">
+                    Este inversor híbrido de fase dividida es el centro de control de cualquier sistema de energía moderno. Con 12,000 W de potencia, gestiona de forma inteligente la energía de paneles solares, baterías de 48V y la red eléctrica. Su capacidad de conexión en paralelo y protección IP65 lo hacen ideal para instalaciones residenciales y comerciales exigentes.
+                </p>
+                <div class="image-placeholder"><img src="img/Inversor Híbrido 12kW.png" alt="Batería"></div>
+                 <div class="mt-8">
+                    <div class="section-title">Características Principales</div>
+                    <div class="feature-grid">
+                        <div class="feature-item"><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75 12 3m0 0 3.75 3.75M12 3v18" /></svg><div><div class="font-bold">Potencia Superior</div><div class="text-sm text-gray-600">12 kW de salida y picos de 24 kVA.</div></div></div>
+                        <div class="feature-item"><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg><div><div class="font-bold">Transferencia Rápida</div><div class="text-sm text-gray-600">10ms para respaldo sin interrupciones.</div></div></div>
+                        <div class="feature-item"><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg><div><div class="font-bold">5 Años de Garantía</div><div class="text-sm text-gray-600">Calidad y respaldo asegurados.</div></div></div>
+                        <div class="feature-item"><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582" /></svg><div><div class="font-bold">Protección Total IP65</div><div class="text-sm text-gray-600">Para uso seguro en exteriores.</div></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-5">
+                <div class="section-title">Rendimiento y Potencia</div>
+                <div class="spec-grid">
+                    <div class="spec-item"><span class="spec-label">Potencia de Salida</span><span class="spec-value">12,000 W</span></div>
+                    <div class="spec-item"><span class="spec-label">Potencia Pico</span><span class="spec-value">24,000 VA</span></div>
+                    <div class="spec-item"><span class="spec-label">Voltaje Salida</span><span class="spec-value">120/240 Vac</span></div>
+                    <div class="spec-item"><span class="spec-label">Eficiencia Máxima</span><span class="spec-value">97.5%</span></div>
+                </div>
+                 <div class="mt-6">
+                    <div class="section-title">Entradas y Compatibilidad</div>
+                     <div class="spec-grid">
+                        <div class="spec-item"><span class="spec-label">Seguidores Solares (MPPT)</span><span class="spec-value">2</span></div>
+                        <div class="spec-item"><span class="spec-label">Potencia Solar Máx.</span><span class="spec-value">13,200 W</span></div>
+                        <div class="spec-item"><span class="spec-label">Voltaje Batería</span><span class="spec-value">48V (Li-ion/Plomo)</span></div>
+                        <div class="spec-item"><span class="spec-label">Capacidad Paralelo</span><span class="spec-value">Hasta 6 unidades</span></div>
+                    </div>
+                </div>
+                 <div class="mt-6">
+                    <div class="section-title">Especificaciones Físicas</div>
+                     <div class="spec-grid">
+                        <div class="spec-item"><span class="spec-label">Modelo</span><span class="spec-value">HESP48120U200-H</span></div>
+                        <div class="spec-item"><span class="spec-label">Dimensiones (mm)</span><span class="spec-value">750x440x240</span></div>
+                        <div class="spec-item"><span class="spec-label">Peso</span><span class="spec-value">42 kg</span></div>
+                        <div class="spec-item"><span class="spec-label">Protección IP</span><span class="spec-value">IP65 (Exterior)</span></div>
+                    </div>
+                </div>
+                 <div class="mt-6">
+                    <div class="section-title">Comunicaciones</div>
+                     <div class="spec-grid">
+                        <div class="spec-item"><span class="spec-label">Interfaces</span><span class="spec-value">RS485/CAN/USB/WiFi</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <!-- Pie de página -->
+   <footer>
+    <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
+        <div class="row pt-5">
+            <div class="col-lg-3 col-md-6 mb-5">
+                <a href="" class="navbar-brand">
+                    <h1 class="text-primary"><span class="text-white">BATSÚ</span></h1>
+                </a>
+                <p>Soluciones de Almacenamiento Energético</p>
+                <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Seguínos en nuestras redes sociales</h6>
+                 <div class="d-flex justify-content-start">
+                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a class="btn btn-outline-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+    
+    <div class="col-lg-3 col-md-6 mb-5">
+      <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Links de Utilidad</h5>
+          <div class="d-flex flex-column justify-content-start">
+                    <a class="text-white-50 mb-2" href="../contacto.html"><i class="fa fa-angle-right mr-2"></i>Contacto</a>
+                </div>
+         </div>
+        <div class="col-lg-3 col-md-6 mb-5">
+                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Contáctenos</h5>
+                <p><i class="fa fa-map-marker-alt mr-2"></i>Heredia, Belén, Cariari</p>
+                <p><i class="fa fa-phone-alt mr-2"></i>+(506) 8913-5715</p>
+                <p><i class="fa fa-envelope mr-2"></i>info@batsuenergy.com</p>
+                <p><i class="fa fa-envelope mr-2"></i>Lunes-Viernes 8:00AM-5:00PM CR</p>
+       </div>
+       <div class="col-lg-4 col-md-6 mb-5">
+            <a><img src="../Logos/cr_flag.png" alt="CR Bandera" class="flag-icon"></a>
+       </div>
+       
+    </div>
+  </div>
+ <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="row">
+            <div class="col-lg-6 text-center text-md-left mb-3 mb-md-0">
+                <p class="m-0 text-white-50">Copyright &copy; <a href="#">2025 Batsú Energy Enterprise</a>. Todos los derechos reservados.</a>
+                </p>
+            </div>
+            <div class="col-lg-6 text-center text-md-right">
+                <p class="m-0 text-white-50">Designed by <a href="https://htmlcodex.com">HTML Codex</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>
